@@ -11,7 +11,7 @@ export const services = [
     image: 'https://images.unsplash.com/photo-1519999482648-25049ddd37b1?w=800&h=600&fit=crop',
     description: 'Sturdy, premium table hire for banquets, registrations, buffet setups, and VIP dinners.',
     features: ['Round Tables (10-Seater)', 'Rectangular Trestle Tables', 'Cocktail Tables', 'Cake Tables'],
-    price: 'Contact us for quotation'
+    price: '$$'
   },
   {
     title: 'Tent Hire',
