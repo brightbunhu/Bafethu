@@ -1,38 +1,58 @@
 export const projects = [
   {
     eventType: 'Weddings',
+    title: 'Luxury Canopy Wedding Setup',
     location: 'Gweru',
     image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop',
-    description: 'Complete seating, tables and tent setup for an elegant wedding reception.'
+    description: 'A complete white-themed wedding ceremony and reception setup including draping, tiffany chairs, and round tables.'
   },
   {
-    eventType: 'Funerals',
-    location: 'Mkoba, Gweru',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop',
-    description: 'Respectful tent, chair and PA support for a community funeral service.'
-  },
-  {
-    eventType: 'Birthdays',
-    location: 'Bulawayo',
-    image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&h=600&fit=crop',
-    description: 'Comfortable seating and tables for a bright family birthday celebration.'
-  },
-  {
-    eventType: 'Corporate Events',
+    eventType: 'Corporate',
+    title: 'Executive Annual General Meeting',
     location: 'Midlands Province',
     image: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&h=600&fit=crop',
-    description: 'Professional PA system, chairs and tables for a formal business event.'
+    description: 'Clean seating arrangements, stage setup, and premium PA sound systems for a corporate stakeholder conference.'
+  },
+  {
+    eventType: 'Church',
+    title: 'Regional Church Convention',
+    location: 'Bulawayo',
+    image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&h=600&fit=crop',
+    description: 'Large-scale seating setup with high-capacity tents and a professional PA sound system for an outdoor congregation.'
+  },
+  {
+    eventType: 'Graduation',
+    title: 'Midlands University Graduation Setup',
+    location: 'Gweru',
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop',
+    description: 'Staging, VIP seating, canopy cover, and line array speakers for a high-profile graduation ceremony.'
+  },
+  {
+    eventType: 'Birthday',
+    title: 'Intimate Golden Jubilee Celebration',
+    location: 'Bulawayo',
+    image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&h=600&fit=crop',
+    description: 'Ambient festoon lighting, chic VIP lounge furniture, and tablescapes for a private 50th birthday party.'
+  },
+  {
+    eventType: 'Funeral',
+    title: 'Solemn Memorial Service Tent Setup',
+    location: 'Mkoba, Gweru',
+    image: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&h=600&fit=crop',
+    description: 'Respectful dome tents, comfortable chairs, and basic sound hire provided with supportive service.'
   },
   {
     eventType: 'Weddings',
-    location: 'Midlands Province',
-    image: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&h=600&fit=crop',
-    description: 'Outdoor ceremony equipment with coordinated chairs, tables and shelter.'
+    title: 'Garden Reception Ceremony',
+    location: 'Mkoba 3, Gweru',
+    image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800&h=600&fit=crop',
+    description: 'Rustic chic outdoor reception setup with cross-back chairs, fairy lights, and customized table centerpieces.'
   },
   {
-    eventType: 'Corporate Events',
-    location: 'Gweru',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop',
-    description: 'Community event setup with tents, sound support and guest seating.'
+    eventType: 'Corporate',
+    title: 'Outdoor Networking Business Lounge',
+    location: 'Bulawayo',
+    image: 'https://images.unsplash.com/photo-1598653222000-6b7b7a552625?w=800&h=600&fit=crop',
+    description: 'Sleek lounge setup featuring VIP Chesterfield couches, cocktail bars, and soft accent lighting.'
   }
 ];
