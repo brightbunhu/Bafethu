@@ -32,6 +32,7 @@ import {
 import { GiTable, GiPartyPopper, GiSoundWaves } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo.jsx';
+import { HOME_FAQS, buildFaqJsonLd, pageSeo } from '../data/seo.js';
 import { business, WHATSAPP_NUMBER } from '../data/business.js';
 import { projects } from '../data/projects.js';
 import { services } from '../data/services.js';
@@ -91,12 +92,21 @@ function AnimatedCounter({ endValue, label, icon }) {
 }
 
 const heroImages = [
-  'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1000&h=700&fit=crop', // Wedding tents
-  'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=1000&h=700&fit=crop', // White chairs
-  'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1000&h=700&fit=crop', // VIP lounge
-  'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=1000&h=700&fit=crop', // Corporate conference
-  'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1000&h=700&fit=crop', // Graduation setup
-  'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1000&h=700&fit=crop'  // Funeral setup
+  'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1000&h=700&fit=crop',
+  'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=1000&h=700&fit=crop',
+  'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1000&h=700&fit=crop',
+  'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=1000&h=700&fit=crop',
+  'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1000&h=700&fit=crop',
+  'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1000&h=700&fit=crop'
+];
+
+const heroImageAlts = [
+  'Tent hire for weddings in Gweru Zimbabwe',
+  'Chair hire and seating layouts in Gweru',
+  'VIP lounge furniture hire Gweru events',
+  'Corporate stage and PA system hire Gweru',
+  'Graduation event equipment hire Midlands Zimbabwe',
+  'Memorial service tent and chair hire Gweru'
 ];
 
 const serviceIcons = [
@@ -223,8 +233,8 @@ function Home() {
   return (
     <>
       <Seo
-        title="Bafethu Events & Logistics | Premium Event Equipment Hire Zimbabwe"
-        description="Redefined luxury event rentals in Gweru, Midlands, and Bulawayo. Premium hiring for chairs, tables, tents, stages, lighting, and audio equipment."
+        {...pageSeo.home}
+        jsonLd={[buildFaqJsonLd(HOME_FAQS)]}
       />
 
       {/* Hero Section */}
@@ -242,10 +252,10 @@ function Home() {
           >
             <div className="premium-badge">PREMIUM EVENTS & LOGISTICS</div>
             <h1 className="hero-compact-title">
-              Creating Memorable<br />Events Across Zimbabwe
+              Event Equipment Hire<br />in Gweru, Zimbabwe
             </h1>
             <p className="hero-desc-compact">
-              We provide premium tents, chairs, tables, décor and PA systems for weddings, corporate events, graduations, church gatherings and special occasions across Zimbabwe.
+              Hire chairs, tables, tents, PA systems, stages, lighting and décor in Gweru for weddings, corporate events, graduations, church gatherings and special occasions across Midlands Province and Bulawayo.
             </p>
             
             <div className="hero-cta-group-compact">
@@ -278,7 +288,7 @@ function Home() {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <img src={heroImages[currentImageIndex]} alt="Premium Event Setup" />
+                  <img src={heroImages[currentImageIndex]} alt={heroImageAlts[currentImageIndex]} />
                   <div className="slide-overlay-info">
                     <span>
                       {currentImageIndex === 0 && 'Exquisite Wedding Tent Staging'}
@@ -325,24 +335,30 @@ function Home() {
       {/* Services Preview Grid */}
       <section id="services" className="premium-section bg-light">
         <div className="container">
-          <div className="section-header-centered">
+          <motion.div
+            className="section-header-centered"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <span className="section-eyebrow">OUR SERVICE OFFERINGS</span>
-            <h2>Premium Equipment Hire</h2>
-            <p>Elevate your event with our extensive catalog of professional rental equipment, delivered and set up by our expert logistics crew.</p>
-          </div>
+            <h2>Chair, Table &amp; Tent Hire in Gweru</h2>
+            <p>From Tiffany chairs and round tables to marquees and PA systems — Bafethu delivers and sets up event equipment across Gweru, Mkoba, Midlands and Bulawayo.</p>
+          </motion.div>
 
           <div className="premium-services-grid">
             {services.slice(0, 4).map((service, index) => (
               <motion.article 
                 className="premium-service-card" 
                 key={service.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.5, delay: index * 0.12 }}
               >
                 <div className="service-card-image-box">
-                  <img src={service.image} alt={service.title} loading="lazy" />
+                  <img src={service.image} alt={`${service.title} in Gweru Zimbabwe`} loading="lazy" />
                   <div className="service-card-icon-overlay">
                     {serviceIcons[index] || <FiCheckCircle />}
                   </div>
@@ -363,22 +379,34 @@ function Home() {
             ))}
           </div>
 
-          <div className="section-preview-actions">
+          <motion.div
+            className="section-preview-actions"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
             <Link to="/services" className="btn-primary-premium">
               View All Services <FiArrowRight />
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Why Choose Us Section */}
       <section id="about" className="premium-section">
         <div className="container">
-          <div className="section-header-centered">
+          <motion.div
+            className="section-header-centered"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <span className="section-eyebrow">UNMATCHED SERVICE STANDARDS</span>
             <h2>Why Choose Bafethu Events?</h2>
             <p>We combine premium quality equipment with meticulous planning and timing to ensure your special day runs without a hitch.</p>
-          </div>
+          </motion.div>
 
           <div className="why-choose-grid">
             {reasons.map((reason, index) => (
@@ -386,10 +414,10 @@ function Home() {
                 className="why-choose-card" 
                 key={reason.title}
                 whileHover={{ y: -10 }}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
+                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: index * 0.12 }}
               >
                 <div className="why-choose-icon-frame">{reason.icon}</div>
                 <h3>{reason.title}</h3>
@@ -403,11 +431,17 @@ function Home() {
       {/* Featured Projects Grid (Portfolio Showcase) */}
       <section id="projects" className="premium-section bg-light">
         <div className="container">
-          <div className="section-header-centered">
+          <motion.div
+            className="section-header-centered"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <span className="section-eyebrow">PORTFOLIO</span>
             <h2>Featured Event Staging</h2>
             <p>Browse through some of our recent professional setups and gatherings successfully staged across Zimbabwe.</p>
-          </div>
+          </motion.div>
 
           {/* Responsive Portfolio Grid */}
           <div className="portfolio-masonry-grid">
@@ -416,10 +450,10 @@ function Home() {
                 key={`${project.title}-${idx}`}
                 className="portfolio-item-card"
                 onClick={() => setLightboxImage(project)}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.5, delay: idx * 0.12 }}
               >
                 <div className="portfolio-card-img-wrapper">
                   <img src={project.image} alt={project.title} loading="lazy" />
@@ -436,22 +470,34 @@ function Home() {
             ))}
           </div>
 
-          <div className="section-preview-actions">
+          <motion.div
+            className="section-preview-actions"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
             <Link to="/projects" className="btn-primary-premium">
               View All Projects <FiArrowRight />
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Testimonials Section */}
       <section id="testimonials" className="premium-section testimonials-slider-bg">
         <div className="container">
-          <div className="section-header-centered text-white">
+          <motion.div
+            className="section-header-centered text-white"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <span className="section-eyebrow text-accent">WHAT OUR CLIENTS SAY</span>
             <h2 className="text-white">Success Stories</h2>
             <p className="text-gray-light">Read direct feedback from couple celebrations, corporate organizers, and community representatives.</p>
-          </div>
+          </motion.div>
 
           <div className="testimonials-carousel-wrapper">
             <div className="carousel-slide-outer">
@@ -505,8 +551,40 @@ function Home() {
         </div>
       </section>
 
+      {/* Local SEO FAQ */}
+      <section id="faq" className="premium-section bg-light">
+        <div className="container">
+          <motion.div
+            className="section-header-centered"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="section-eyebrow">GWERU EVENT HIRE FAQ</span>
+            <h2>Common Questions About Event Equipment Hire in Gweru</h2>
+            <p>Answers to popular searches for chairs, tables, tents and event logistics in Gweru and across Zimbabwe.</p>
+          </motion.div>
+
+          <div className="seo-faq-list">
+            {HOME_FAQS.map((faq) => (
+              <article key={faq.question} className="seo-faq-item">
+                <h3>{faq.question}</h3>
+                <p>{faq.answer}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Booking CTA Banner */}
-      <section className="premium-cta-strip-banner">
+      <motion.section
+        className="premium-cta-strip-banner"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="container cta-banner-inner">
           <div className="cta-banner-text">
             <h2>Planning Your Next Event?</h2>
@@ -517,7 +595,7 @@ function Home() {
             <Link to="/contact" className="btn-cta-secondary">Contact Us</Link>
           </div>
         </div>
-      </section>
+      </motion.section>
 
 
       {/* Lightbox Modal */}

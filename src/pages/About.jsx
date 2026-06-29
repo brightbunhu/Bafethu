@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FiCheckCircle, FiMapPin, FiSettings, FiShield, FiTruck, FiUsers, FiAward } from 'react-icons/fi';
 import Seo from '../components/Seo.jsx';
+import { pageSeo } from '../data/seo.js';
 import { business } from '../data/business.js';
 
 const values = [
@@ -13,10 +14,7 @@ const values = [
 function About() {
   return (
     <>
-      <Seo
-        title="About Bafethu Events & Logistics | Event Rental Experts Zimbabwe"
-        description="Learn about Gweru's leading event hire company. Offering chairs, tables, tents, PA systems, and logistics staging across Midlands and Bulawayo."
-      />
+      <Seo {...pageSeo.about} />
 
       {/* Page Hero */}
       <section className="premium-page-hero">

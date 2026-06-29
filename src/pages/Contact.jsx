@@ -4,6 +4,7 @@ import { FaFacebookF, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { FiClock, FiMail, FiMapPin, FiPhone, FiCheck } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import Seo from '../components/Seo.jsx';
+import { pageSeo } from '../data/seo.js';
 import { business, WHATSAPP_NUMBER } from '../data/business.js';
 
 const initialForm = {
@@ -72,10 +73,7 @@ function Contact() {
 
   return (
     <>
-      <Seo
-        title="Contact Bafethu Events & Logistics | Request Quotations"
-        description="Get in touch with Gweru's premier event hire coordinators. Complete our inquiry form for customized pricing on chairs, tables, tents, stages, and PA hire."
-      />
+      <Seo {...pageSeo.contact} />
 
       {/* Page Hero */}
       <section className="premium-page-hero">
@@ -242,7 +240,7 @@ function Contact() {
               <div className="google-map-card">
                 <iframe
                   title="Bafethu Events location map"
-                  src="https://www.google.com/maps?q=Mkoba%203%20Gweru%20Zimbabwe&output=embed"
+                  src={`https://www.google.com/maps?q=${business.coordinates.lat},${business.coordinates.lng}&output=embed`}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />

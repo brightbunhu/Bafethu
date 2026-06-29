@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiFilter, FiMapPin, FiX } from 'react-icons/fi';
 import Seo from '../components/Seo.jsx';
+import { pageSeo } from '../data/seo.js';
 import { projects } from '../data/projects.js';
 import { business, WHATSAPP_NUMBER } from '../data/business.js';
 
@@ -24,10 +25,7 @@ function Projects() {
 
   return (
     <>
-      <Seo
-        title="Bafethu Events done projects | Events Staging Gallery"
-        description="View our extensive portfolio of completed events. Large-scale corporate meetings, church gatherings, graduation ceremonies, and weddings in Zimbabwe."
-      />
+      <Seo {...pageSeo.projects} />
 
       {/* Page Hero */}
       <section className="premium-page-hero">

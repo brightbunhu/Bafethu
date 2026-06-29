@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
-import { FaWhatsapp } from 'react-icons/fa';
+import { FaWhatsapp, FaFacebookF, FaInstagram } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { business, WHATSAPP_NUMBER } from '../data/business.js';
 import logo from '../assets/images/logoh.jpg';
@@ -11,7 +11,7 @@ const navItems = [
   { label: 'About', path: '/about', hash: '#about' },
   { label: 'Services', path: '/services', hash: '#services' },
   { label: 'Projects', path: '/projects', hash: '#projects' },
-  { label: 'Testimonials', path: '/', hash: '#testimonials' },
+  { label: 'Gallery', path: '/projects', hash: '#gallery' },
   { label: 'Contact', path: '/contact', hash: '#contact' }
 ];
 
@@ -19,7 +19,6 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,6 +28,18 @@ function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Lock body scroll when mobile drawer is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
 
   // Handle active highlighting based on hash and path
   const isActiveItem = (item) => {
@@ -43,25 +54,7 @@ function Navbar() {
 
   const handleNavClick = (e, item) => {
     setIsOpen(false);
-    if (item.hash === '#testimonials') {
-      if (location.pathname === '/') {
-        e.preventDefault();
-        const element = document.querySelector('#testimonials');
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-          window.history.pushState(null, '', '#testimonials');
-        }
-      } else {
-        e.preventDefault();
-        navigate('/#testimonials');
-        setTimeout(() => {
-          const element = document.querySelector('#testimonials');
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-          }
-        }, 100);
-      }
-    } else if (item.hash === '#home' && location.pathname === '/') {
+    if (item.hash === '#home' && location.pathname === '/') {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: 'smooth' });
       window.history.pushState(null, '', '/');
@@ -101,11 +94,8 @@ function Navbar() {
 
         {/* Right Side: Actions */}
         <div className="nav-actions-right">
-          <a href={whatsappUrl} target="_blank" rel="noreferrer" className="nav-whatsapp-icon" aria-label="Chat on WhatsApp">
-            <FaWhatsapp />
-          </a>
           <NavLink className="quote-pill-btn" to="/contact">
-            Get Quote
+            Partner with us
           </NavLink>
         </div>
 
@@ -120,49 +110,73 @@ function Navbar() {
           {isOpen ? <FiX /> : <FiMenu />}
         </button>
 
-        {/* Mobile Slide-in Drawer */}
+        {/* Mobile Slide-in Drawer with Backdrop */}
         <AnimatePresence>
           {isOpen && (
-            <motion.div
-              className="mobile-nav-drawer"
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            >
-              <div className="drawer-header">
-                <span className="brand">
-                  <img className="brand-logo" src={logo} alt="Bafethu Events & Logistics logo" />
-                  <span>
-                    <strong>BAFETHU</strong>
-                    <small>Events & Logistics</small>
+            <>
+              {/* Backdrop overlay */}
+              <motion.div
+                className="drawer-backdrop"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                onClick={() => setIsOpen(false)}
+                aria-hidden="true"
+              />
+              {/* Drawer */}
+              <motion.div
+                className="mobile-nav-drawer"
+                initial={{ x: '100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '100%' }}
+                transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              >
+                <div className="drawer-header">
+                  <span className="brand">
+                    <img className="brand-logo" src={logo} alt="Bafethu Events & Logistics logo" />
+                    <span>
+                      <strong>BAFETHU</strong>
+                      <small>Events & Logistics</small>
+                    </span>
                   </span>
-                </span>
-                <button className="icon-button" onClick={() => setIsOpen(false)}>
-                  <FiX />
-                </button>
-              </div>
-              <div className="drawer-links">
-                {navItems.map((item) => (
-                  <NavLink
-                    key={item.label}
-                    to={item.path}
-                    onClick={(e) => handleNavClick(e, item)}
-                    className={`drawer-link-item ${isActiveItem(item) ? 'active' : ''}`}
-                  >
-                    {item.label}
-                  </NavLink>
-                ))}
+                  <button className="icon-button drawer-close-btn" onClick={() => setIsOpen(false)} aria-label="Close menu">
+                    <FiX />
+                  </button>
+                </div>
+                <div className="drawer-links">
+                  {navItems.map((item) => (
+                    <NavLink
+                      key={item.label}
+                      to={item.path}
+                      onClick={(e) => handleNavClick(e, item)}
+                      className={`drawer-link-item ${isActiveItem(item) ? 'active' : ''}`}
+                    >
+                      {item.label}
+                    </NavLink>
+                  ))}
+                </div>
                 <div className="drawer-footer-actions">
                   <NavLink className="quote-pill-btn mobile-drawer-btn" to="/contact" onClick={() => setIsOpen(false)}>
-                    Get Quote
+                    Partner with us
                   </NavLink>
                   <a href={whatsappUrl} target="_blank" rel="noreferrer" className="whatsapp-drawer-link">
                     <FaWhatsapp /> Chat on WhatsApp
                   </a>
+                  <div className="drawer-social-icons">
+                    <a href="https://facebook.com" target="_blank" rel="noreferrer" className="drawer-social-btn" aria-label="Facebook">
+                      <FaFacebookF />
+                    </a>
+                    <a href={whatsappUrl} target="_blank" rel="noreferrer" className="drawer-social-btn" aria-label="WhatsApp">
+                      <FaWhatsapp />
+                    </a>
+                    <a href="https://instagram.com" target="_blank" rel="noreferrer" className="drawer-social-btn" aria-label="Instagram">
+                      <FaInstagram />
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </nav>

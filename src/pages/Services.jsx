@@ -2,6 +2,7 @@ import { FiCheckCircle, FiPhoneCall, FiInfo } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Seo from '../components/Seo.jsx';
+import { buildServiceListJsonLd, pageSeo } from '../data/seo.js';
 import { services } from '../data/services.js';
 import { business, WHATSAPP_NUMBER } from '../data/business.js';
 
@@ -12,10 +13,7 @@ function Services() {
 
   return (
     <>
-      <Seo
-        title="Event Equipment Hiring Services & Logistics Gweru"
-        description="View our extensive catalog of event hire items. Chairs, tables, marquees, stages, PA sound hire, decorations, and VIP lounge furniture in Zimbabwe."
-      />
+      <Seo {...pageSeo.services} jsonLd={[buildServiceListJsonLd()]} />
 
       {/* Page Hero */}
       <section className="premium-page-hero">
@@ -26,8 +24,8 @@ function Services() {
             transition={{ duration: 0.5 }}
           >
             <span className="hero-eyebrow">EQUIPMENT CATALOG</span>
-            <h1>Our Services & Packages</h1>
-            <p>High-quality event assets prepared, delivered, and assembled for your peace of mind.</p>
+            <h1>Chair, Table &amp; Tent Hire in Gweru</h1>
+            <p>Complete event equipment rental with delivery, setup and collection across Gweru, Midlands Province and Bulawayo.</p>
           </motion.div>
         </div>
       </section>
@@ -39,29 +37,67 @@ function Services() {
             <motion.article 
               className={`premium-service-row ${index % 2 === 1 ? 'reverse-row' : ''}`}
               key={service.title}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.55 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <div className="service-row-visual">
+              <motion.div 
+                className="service-row-visual"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
                 <img src={service.image} alt={`${service.title} event staging`} loading="lazy" />
-              </div>
-              <div className="service-row-content">
-                <span className="row-item-index">0{index + 1}</span>
+              </motion.div>
+              <motion.div 
+                className="service-row-content"
+                initial={{ opacity: 0, x: index % 2 === 0 ? 40 : -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.25 }}
+              >
+                <motion.span 
+                  className="row-item-index"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.35 }}
+                >
+                  0{index + 1}
+                </motion.span>
                 <h2>{service.title}</h2>
                 <p className="service-row-desc">{service.description}</p>
-                <div className="features-checklist-box">
+                <motion.div 
+                  className="features-checklist-box"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.35 }}
+                >
                   <h3>Available Options</h3>
                   <ul className="service-checklist-grid">
-                    {service.features.map((feature) => (
-                      <li key={feature}>
+                    {service.features.map((feature, fIdx) => (
+                      <motion.li 
+                        key={feature}
+                        initial={{ opacity: 0, x: -15 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: 0.4 + fIdx * 0.06 }}
+                      >
                         <FiCheckCircle /> {feature}
-                      </li>
+                      </motion.li>
                     ))}
                   </ul>
-                </div>
-                <div className="service-row-quote-card">
+                </motion.div>
+                <motion.div 
+                  className="service-row-quote-card"
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.45 }}
+                >
                   <div className="quote-card-header">
                     <FiInfo />
                     <div>
@@ -75,17 +111,29 @@ function Services() {
                       WhatsApp Quote
                     </a>
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </motion.article>
           ))}
         </div>
       </section>
 
       {/* Help Banner Section */}
-      <section className="premium-section services-help-banner">
+      <motion.section 
+        className="premium-section services-help-banner"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="container help-banner-inner-box">
-          <div className="help-banner-content">
+          <motion.div 
+            className="help-banner-content"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             <span className="help-eyebrow">EXPERT STAGING HELP</span>
             <h2>Need Help Choosing Packages?</h2>
             <p>Our experienced logistics coordinators can help you calculate the exact number of chairs, tables, and tent size configurations for your guest count.</p>
@@ -95,12 +143,18 @@ function Services() {
                 <FiPhoneCall /> Call: {business.phones[0]}
               </a>
             </div>
-          </div>
-          <div className="help-banner-visual">
+          </motion.div>
+          <motion.div 
+            className="help-banner-visual"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
             <img src="https://images.unsplash.com/photo-1598653222000-6b7b7a552625?w=800&h=600&fit=crop" alt="High-quality event audio speakers" />
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
     </>
   );
 }
