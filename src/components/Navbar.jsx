@@ -11,7 +11,6 @@ const navItems = [
   { label: 'About', path: '/about', hash: '#about' },
   { label: 'Services', path: '/services', hash: '#services' },
   { label: 'Projects', path: '/projects', hash: '#projects' },
-  { label: 'Gallery', path: '/projects', hash: '#gallery' },
   { label: 'Contact', path: '/contact', hash: '#contact' }
 ];
 
@@ -19,6 +18,10 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  // Pages with blue hero backgrounds that need solid navbar
+  const pagesWithBlueBackground = ['/about', '/services', '/contact', '/projects'];
+  const hasBlueBackground = pagesWithBlueBackground.includes(location.pathname);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,7 +69,7 @@ function Navbar() {
   )}`;
 
   return (
-    <header className={`site-header ${isScrolled ? 'scrolled' : 'transparent-nav'}`}>
+    <header className={`site-header ${isScrolled || hasBlueBackground ? 'scrolled' : 'transparent-nav'}`}>
       <nav className="navbar container" aria-label="Main navigation">
         {/* Left Side: Logo and Title */}
         <NavLink to="/" className="brand" onClick={() => setIsOpen(false)}>

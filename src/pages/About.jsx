@@ -3,6 +3,7 @@ import { FiCheckCircle, FiMapPin, FiSettings, FiShield, FiTruck, FiUsers, FiAwar
 import Seo from '../components/Seo.jsx';
 import { pageSeo } from '../data/seo.js';
 import { business } from '../data/business.js';
+import logo from '../assets/images/logoh.jpg';
 
 const values = [
   { icon: <FiTruck />, title: 'Reliability', text: 'Punctuality is our core. We deliver and assemble your equipment on time, every time, without exception.' },
@@ -42,6 +43,10 @@ function About() {
             transition={{ duration: 0.55 }}
           >
             <span className="section-eyebrow">OUR STORY</span>
+            <div className="about-logo-wrapper">
+              <img src={logo} alt="Bafethu Events & Logistics logo" className="about-page-logo" />
+              <p className="about-slogan">{business.slogan}</p>
+            </div>
             <h2>Zimbabwe's Premiere Event Partner</h2>
             <p>
               Founded in Gweru, Bafethu Events & Logistics has grown into a leading event hire firm, recognized for bridging the gap between affordability and luxury staging. We provide comprehensive equipment rental packages designed for weddings, corporate conferences, graduations, family gatherings, and memorial services.

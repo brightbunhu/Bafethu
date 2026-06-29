@@ -1335,6 +1335,28 @@ img {
   margin: 0 auto;
 }
 
+.contact-logo-display {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.contact-page-logo {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin: 0 auto 16px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.contact-slogan {
+  color: var(--accent-blue);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
 .contact-grid-split {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -1587,11 +1609,19 @@ img {
   color: var(--accent-blue);
 }
 
+.footer-slogan {
+  color: var(--accent-blue);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 12px 0 8px;
+  letter-spacing: 0.5px;
+}
+
 .footer-company-desc {
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.9rem;
   line-height: 1.6;
-  margin: 20px 0 24px;
+  margin: 12px 0 24px;
 }
 
 .footer-social-row {
@@ -2063,6 +2093,59 @@ img {
   background-color: var(--secondary-blue);
 }
 
+/* Chatbot Message Formatting */
+.chatbot-formatted-message {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chatbot-message-line {
+  margin: 0;
+  line-height: 1.5;
+  color: inherit;
+}
+
+.chatbot-message-line strong {
+  color: var(--primary-blue);
+  font-weight: 600;
+}
+
+.chatbot-list-item {
+  margin: 4px 0;
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.chatbot-list-item::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent-blue);
+  font-weight: bold;
+}
+
+.chatbot-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: rgba(10, 46, 115, 0.05);
+  border-radius: var(--radius-sm);
+  margin: 4px 0;
+  font-size: 0.9rem;
+}
+
+.chatbot-contact-item svg {
+  color: var(--primary-blue);
+  flex-shrink: 0;
+}
+
+.chatbot-contact-item span {
+  color: var(--dark-text);
+}
+
 /* Secondary Pages Headers styling */
 .premium-page-hero {
   background-color: var(--primary-blue);
@@ -2100,6 +2183,30 @@ img {
   grid-template-columns: 1fr 1fr;
   gap: 60px;
   align-items: center;
+}
+
+.about-logo-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.about-page-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 12px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.about-slogan {
+  color: var(--accent-blue);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin: 0;
 }
 
 .about-intro-text h2 {
@@ -2639,6 +2746,13 @@ img {
     gap: 45px;
     text-align: center;
   }
+  .about-page-logo {
+    width: 90px;
+    height: 90px;
+  }
+  .about-slogan {
+    font-size: 1rem;
+  }
   .about-intro-visual {
     order: -1;
   }
@@ -2911,6 +3025,30 @@ img {
   }
 
   /* ---- Portfolio / Projects Mobile ---- */
+  .portfolio-filter-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .filter-header-label {
+    font-size: 0.9rem;
+  }
+  
+  .filter-buttons-scroll-wrap {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .filter-tab-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  
   .portfolio-masonry-grid {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -2918,9 +3056,23 @@ img {
   .portfolio-card-img-wrapper {
     border-radius: 16px;
     overflow: hidden;
+    aspect-ratio: 4/3;
   }
   .portfolio-card-img-wrapper img {
-    height: 240px;
+    height: auto;
+  }
+  
+  .overlay-content-block h4 {
+    font-size: 1rem;
+  }
+  
+  .overlay-loc {
+    font-size: 0.85rem;
+  }
+  
+  .overlay-action-btn {
+    font-size: 0.85rem;
+    padding: 8px 16px;
   }
 
   /* ---- Testimonials Mobile ---- */
@@ -2982,6 +3134,13 @@ img {
     grid-template-columns: 1fr;
     gap: 32px;
   }
+  .contact-page-logo {
+    width: 100px;
+    height: 100px;
+  }
+  .contact-slogan {
+    font-size: 1.1rem;
+  }
   .form-group-row {
     grid-template-columns: 1fr;
   }
@@ -3025,6 +3184,9 @@ img {
   }
   .footer-brand {
     justify-content: center;
+  }
+  .footer-slogan {
+    font-size: 1rem;
   }
   .footer-company-desc {
     max-width: 400px;
@@ -3154,11 +3316,33 @@ img {
   .about-intro-grid {
     gap: 32px;
   }
-  .about-stats-row {
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+  
+  .about-intro-text h2 {
+    font-size: 1.6rem;
   }
+  
+  .about-intro-text p {
+    font-size: 0.95rem;
+  }
+  
+  .about-stats-row {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+  
+  .about-stat-col {
+    text-align: center;
+  }
+  
+  .about-stat-col strong {
+    font-size: 1.8rem;
+  }
+  
+  .about-stat-col span {
+    font-size: 0.85rem;
+  }
+  
   .values-premium-grid {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -3210,6 +3394,24 @@ img {
   .coverage-panel-inner {
     flex-direction: column;
     text-align: center;
+    gap: 24px;
+  }
+  
+  .coverage-info-text h2 {
+    font-size: 1.4rem;
+  }
+  
+  .coverage-info-text p {
+    font-size: 0.9rem;
+  }
+  
+  .coverage-pills-list {
+    justify-content: center;
+  }
+  
+  .coverage-pill-item {
+    font-size: 0.85rem;
+    padding: 8px 14px;
   }
 
   /* ---- Disable heavy desktop animations ---- */

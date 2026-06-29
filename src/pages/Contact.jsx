@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import Seo from '../components/Seo.jsx';
 import { pageSeo } from '../data/seo.js';
 import { business, WHATSAPP_NUMBER } from '../data/business.js';
+import logo from '../assets/images/logoh.jpg';
 
 const initialForm = {
   name: '',
@@ -93,6 +94,17 @@ function Contact() {
       {/* Form and Info Section */}
       <section className="premium-section">
         <div className="container contact-section-inner">
+          {/* Logo Display */}
+          <motion.div 
+            className="contact-logo-display"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <img src={logo} alt="Bafethu Events & Logistics logo" className="contact-page-logo" />
+            <p className="contact-slogan">{business.slogan}</p>
+          </motion.div>
+          
           <div className="contact-grid-split">
             {/* Form Column */}
             <motion.div 

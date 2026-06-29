@@ -3,6 +3,7 @@ export const WHATSAPP_NUMBER = '263775524121';
 export const business = {
   name: 'Bafethu Events & Logistics',
   tagline: 'Creating Memorable Events With Quality Equipment',
+  slogan: 'Forever With You',
   website: 'https://bafethuevents.co.zw',
   location: 'Mkoba 3, Gweru, Zimbabwe',
   coordinates: {

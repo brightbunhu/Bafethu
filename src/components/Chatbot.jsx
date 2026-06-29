@@ -1,11 +1,79 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { FiMessageCircle, FiSend, FiX } from 'react-icons/fi';
+import { FiMessageCircle, FiSend, FiX, FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
 import { business } from '../data/business.js';
 import { starterQuestions } from '../data/chatbotResponses.js';
 
 const OPENROUTER_API_KEY = 'YOUR_OPENROUTER_API_KEY'; // Replace with your actual API key
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
+
+// Component to format chatbot messages with rich content
+function MessageFormatter({ text }) {
+  const formatMessage = (message) => {
+    // Convert markdown-like syntax to React components
+    const lines = message.split('\n');
+    
+    return lines.map((line, index) => {
+      // Bold text with **text**
+      if (line.includes('**')) {
+        const parts = line.split('**');
+        return (
+          <p key={index} className="chatbot-message-line">
+            {parts.map((part, i) => 
+              i % 2 === 1 ? <strong key={i}>{part}</strong> : part
+            )}
+          </p>
+        );
+      }
+      
+      // List items with -
+      if (line.trim().startsWith('- ')) {
+        return (
+          <li key={index} className="chatbot-list-item">
+            {line.trim().substring(2)}
+          </li>
+        );
+      }
+      
+      // Contact info patterns
+      if (line.toLowerCase().includes('phone') || line.toLowerCase().includes('call')) {
+        return (
+          <div key={index} className="chatbot-contact-item">
+            <FiPhone />
+            <span>{line}</span>
+          </div>
+        );
+      }
+      
+      if (line.toLowerCase().includes('email') || line.includes('@')) {
+        return (
+          <div key={index} className="chatbot-contact-item">
+            <FiMail />
+            <span>{line}</span>
+          </div>
+        );
+      }
+      
+      if (line.toLowerCase().includes('location') || line.toLowerCase().includes('address')) {
+        return (
+          <div key={index} className="chatbot-contact-item">
+            <FiMapPin />
+            <span>{line}</span>
+          </div>
+        );
+      }
+      
+      // Regular paragraph
+      if (line.trim()) {
+        return <p key={index} className="chatbot-message-line">{line}</p>;
+      }
+      
+      return null;
+    });
+  };
+
+  return <div className="chatbot-formatted-message">{formatMessage(text)}</div>;
+}
 
 async function getAIResponse(message, conversationHistory) {
   try {
@@ -119,14 +187,29 @@ function Chatbot() {
 
             <div className="chatbot-messages">
               {messages.map((message, index) => (
-                <div key={`${message.sender}-${index}`} className={`message ${message.sender}`}>
-                  {message.text}
-                </div>
+                <motion.div
+                  key={`${message.sender}-${index}`}
+                  className={`message ${message.sender}`}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {message.sender === 'bot' ? (
+                    <MessageFormatter text={message.text} />
+                  ) : (
+                    <span>{message.text}</span>
+                  )}
+                </motion.div>
               ))}
               {isLoading && (
-                <div className="message bot">
+                <motion.div
+                  className="message bot"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
                   <span className="typing-indicator">...</span>
-                </div>
+                </motion.div>
               )}
             </div>
 

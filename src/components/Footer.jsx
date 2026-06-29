@@ -20,6 +20,7 @@ function Footer() {
               <small className="brand-sub">Events & Logistics</small>
             </span>
           </Link>
+          <p className="footer-slogan">{business.slogan}</p>
           <p className="footer-company-desc">
             Creating memorable events with premium equipment rentals and exceptional staging logistics across Gweru, Midlands, and Bulawayo.
           </p>
