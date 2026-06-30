@@ -35,7 +35,7 @@ function About() {
       {/* Main Intro */}
       <section className="premium-section">
         <div className="container about-intro-grid">
-          <motion.div 
+          <motion.div
             className="about-intro-text"
             initial={{ opacity: 0, x: -35 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -49,7 +49,7 @@ function About() {
             </div>
             <h2>Zimbabwe's Premiere Event Partner</h2>
             <p>
-              Founded in Gweru, Bafethu Events & Logistics has grown into a leading event hire firm, recognized for bridging the gap between affordability and luxury staging. We provide comprehensive equipment rental packages designed for weddings, corporate conferences, graduations, family gatherings, and memorial services.
+              Founded in Gweru, Bafethu Events & Logistics is a newly Founded company that is fast growing into a leading events equipment hiring firm, recognized for bridging the gap between affordability and luxury staging. We provide comprehensive equipment rental packages designed for weddings, corporate conferences, graduations, family gatherings, and memorial services.
             </p>
             <p>
               Our operations combine high-capacity logistics transport with dedicated staging professionals. We do not just lease chairs and tents—we carefully coordinate layouts, set up sound frequencies, and manage aesthetics to allow you to focus entirely on your guests.
@@ -65,7 +65,7 @@ function About() {
               </div>
             </div>
           </motion.div>
-          <motion.div 
+          <motion.div
             className="about-intro-visual"
             initial={{ opacity: 0, x: 35 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -93,8 +93,8 @@ function About() {
           </div>
           <div className="values-premium-grid">
             {values.map((value, index) => (
-              <motion.article 
-                className="value-card-premium" 
+              <motion.article
+                className="value-card-premium"
                 key={value.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -113,7 +113,7 @@ function About() {
       {/* Service Range and Checklist */}
       <section className="premium-section">
         <div className="container about-capabilities-grid">
-          <motion.div 
+          <motion.div
             className="capabilities-text"
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -134,7 +134,7 @@ function About() {
               <li><FiCheckCircle /> Safe Event Transportation & Venue Teardown</li>
             </ul>
           </motion.div>
-          <motion.div 
+          <motion.div
             className="capabilities-visual"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
