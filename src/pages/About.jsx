@@ -8,8 +8,8 @@ import logo from '../assets/images/logoh.jpg';
 const values = [
   { icon: <FiTruck />, title: 'Reliability', text: 'Punctuality is our core. We deliver and assemble your equipment on time, every time, without exception.' },
   { icon: <FiSettings />, title: 'Premium Quality', text: 'All rental stock is inspected, sanitized, and polished before dispatch to ensure pristine event presentation.' },
-  { icon: <FiShield />, title: 'Affordable Elegance', text: 'Get high-end event configurations and VIP packages at competitive rates tailored to your budget.' },
-  { icon: <FiUsers />, title: 'Professionalism', text: 'From booking to complete venue teardown, our staff handles logistics with absolute care and expertise.' }
+  { icon: <FiShield />, title: 'Innovation', text: 'Our team is always on the look out for the latest trends in the event industry to ensure that we offer the best and most innovative solutions to our clients.' },
+  { icon: <FiUsers />, title: 'Professionalism and Teamwork', text: 'From booking to complete venue teardown, our staff handles logistics with absolute care and expertise as a team.' },
 ];
 
 function About() {
@@ -54,6 +54,7 @@ function About() {
             <p>
               Our operations combine high-capacity logistics transport with dedicated staging professionals. We do not just lease chairs and tents—we carefully coordinate layouts, set up sound frequencies, and manage aesthetics to allow you to focus entirely on your guests.
             </p>
+            {/* stats 
             <div className="about-stats-row">
               <div className="about-stat-col">
                 <strong>10+</strong>
@@ -64,6 +65,7 @@ function About() {
                 <span>Punctuality Rate</span>
               </div>
             </div>
+            */}
           </motion.div>
           <motion.div
             className="about-intro-visual"
